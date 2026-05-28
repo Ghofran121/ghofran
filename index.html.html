@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghofraneko | Official</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Poppins,sans-serif;
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    background:url("background.png") center/cover no-repeat;
+    z-index:-3;
+    animation:bgMove 14s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove{
+    from{transform:scale(1)}
+    to{transform:scale(1.05)}
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.04),rgba(0,0,0,.18)),
+    radial-gradient(circle at center,rgba(98,255,0,.06),transparent 55%);
+    z-index:-2;
+}
+
+.container{
+    min-height:100vh;
+    padding:60px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+.left{
+    width:55%;
+}
+
+.live{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 22px;
+    border-radius:50px;
+    background:rgba(20,255,0,.12);
+    border:1px solid rgba(115,255,0,.45);
+    backdrop-filter:blur(4px);
+    margin-bottom:28px;
+}
+
+.dot{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:#72ff00;
+    box-shadow:0 0 18px #72ff00;
+}
+
+.title{
+    display:flex;
+    gap:5px;
+    margin-bottom:18px;
+}
+
+.title span{
+    font-size:115px;
+    font-weight:900;
+    line-height:1;
+    opacity:0;
+    transform:translateY(120px) scale(.5);
+    animation:letterIn .7s forwards;
+    text-shadow:0 0 20px #72ff00,0 0 60px rgba(114,255,0,.55);
+}
+
+.title span:nth-child(1){animation-delay:.1s}
+.title span:nth-child(2){animation-delay:.2s}
+.title span:nth-child(3){animation-delay:.3s}
+.title span:nth-child(4){animation-delay:.4s}
+.title span:nth-child(5){animation-delay:.5s}
+.title span:nth-child(6){animation-delay:.6s}
+.title span:nth-child(7){animation-delay:.7s}
+
+@keyframes letterIn{
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+.subtitle{
+    color:#72ff00;
+    font-size:28px;
+    letter-spacing:12px;
+    font-weight:900;
+    margin-bottom:25px;
+    text-shadow:0 0 20px #72ff00;
+}
+
+.description{
+    max-width:700px;
+    line-height:2;
+    color:#eee;
+    margin-bottom:35px;
+    text-shadow:0 2px 8px #000;
+}
+
+.socials{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.social{
+    min-height:88px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:16px 22px;
+    border-radius:24px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(0,0,0,.28);
+    border:1px solid rgba(114,255,0,.28);
+    backdrop-filter:blur(5px);
+    box-shadow:0 0 25px rgba(0,0,0,.25);
+    transition:.35s;
+}
+
+.social:hover{
+    transform:translateX(10px) scale(1.02);
+    background:rgba(0,0,0,.38);
+    box-shadow:0 0 35px rgba(114,255,0,.25);
+}
+
+.icon{
+    width:68px;
+    height:68px;
+    border-radius:22px;
+    background:#72ff00;
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    box-shadow:0 0 25px rgba(114,255,0,.7);
+}
+
+.social-text{flex:1}
+
+.social-text h2{
+    color:#72ff00;
+    font-size:22px;
+}
+
+.social-text p{
+    color:#eee;
+    font-size:15px;
+}
+
+.arrow{
+    color:#72ff00;
+    font-size:24px;
+}
+
+.right{
+    width:38%;
+}
+
+.instapay-box{
+    background:rgba(0,0,0,.24);
+    border:1px solid rgba(114,255,0,.3);
+    backdrop-filter:blur(5px);
+    border-radius:34px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(114,255,0,.12);
+}
+
+.pay-icon{
+    width:120px;
+    height:120px;
+    margin:0 auto 28px;
+    border-radius:30px;
+    background:#72ff00;
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:58px;
+    box-shadow:0 0 35px rgba(114,255,0,.7);
+}
+
+.pay-title{
+    font-size:42px;
+    font-weight:900;
+    color:#72ff00;
+    margin-bottom:15px;
+    text-shadow:0 0 22px #72ff00;
+}
+
+.pay-text{
+    color:#eee;
+    line-height:1.9;
+    margin-bottom:28px;
+}
+
+.pay-btn{
+    height:78px;
+    border-radius:24px;
+    background:#72ff00;
+    color:#000;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:900;
+    box-shadow:0 0 30px rgba(114,255,0,.65);
+    transition:.3s;
+}
+
+.pay-btn:hover{
+    transform:scale(1.04);
+}
+
+@media(max-width:1100px){
+    .container{
+        flex-direction:column;
+        padding:35px 20px;
+    }
+
+    .left,.right{
+        width:100%;
+    }
+
+    .title span{
+        font-size:70px;
+    }
+
+    .subtitle{
+        font-size:20px;
+        letter-spacing:7px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<div class="container">
+
+    <div class="left">
+
+        <div class="live">
+            <div class="dot"></div>
+            <span>LIVE ON KICK</span>
+        </div>
+
+        <div class="title">
+            <span>G</span><span>H</span><span>O</span><span>F</span><span>R</span><span>A</span><span>N</span>
+        </div>
+
+        <div class="subtitle">STARTING SOON</div>
+
+        <div class="description">
+            Welcome to the official website of Ghofraneko. Follow all official platforms and stay tuned for the strongest live streams and exclusive content.
+        </div>
+
+        <div class="socials">
+
+            <a href="https://www.instagram.com/ghofranmuhammed/" target="_blank" class="social">
+                <div class="icon"><i class="fab fa-instagram"></i></div>
+                <div class="social-text"><h2>INSTAGRAM</h2><p>@ghofranmuhammed</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="https://www.youtube.com/@Ghofraneko_" target="_blank" class="social">
+                <div class="icon"><i class="fab fa-youtube"></i></div>
+                <div class="social-text"><h2>YOUTUBE</h2><p>@Ghofraneko_</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="https://www.tiktok.com/@ghofraneko0" target="_blank" class="social">
+                <div class="icon"><i class="fab fa-tiktok"></i></div>
+                <div class="social-text"><h2>TIKTOK</h2><p>@ghofraneko0</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="https://kick.com/ghofraneko" target="_blank" class="social">
+                <div class="icon"><i class="fa-solid fa-k"></i></div>
+                <div class="social-text"><h2>KICK</h2><p>kick.com/ghofraneko</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="https://whatsapp.com/channel/0029VbCEBAIH5JLuSa57jo0b" target="_blank" class="social">
+                <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="social-text"><h2>WHATSAPP</h2><p>Official Channel</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="https://ipn.eg/S/ghofranwael/instapay/5PisYl" target="_blank" class="social">
+                <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+                <div class="social-text"><h2>INSTAPAY</h2><p>Open InstaPay Link</p></div>
+                <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="instapay-box">
+            <div class="pay-icon"><i class="fa-solid fa-wallet"></i></div>
+            <div class="pay-title">INSTAPAY</div>
+            <div class="pay-text">Support directly using InstaPay. Click the button below to open the official payment link.</div>
+            <a href="https://ipn.eg/S/ghofranwael/instapay/5PisYl" target="_blank" class="pay-btn">OPEN INSTAPAY</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
