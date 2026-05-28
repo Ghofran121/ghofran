@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Ghofraneko | Starting Soon</title>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
+    url("background.png");
+    background-size:cover;
+    background-position:center;
+    z-index:-3;
+    transform:scale(1.03);
+    animation:bgZoom 12s infinite alternate ease-in-out;
+}
+
+@keyframes bgZoom{
+    from{
+        transform:scale(1.03);
+    }
+    to{
+        transform:scale(1.08);
+    }
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at left,#72ff0030,transparent 35%),
+    radial-gradient(circle at right,#72ff0015,transparent 30%);
+    z-index:-2;
+}
+
+/* MAIN */
+
+.container{
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:50px;
+}
+
+/* LEFT */
+
+.left{
+    width:430px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* TITLE */
+
+.logo-box{
+    margin-bottom:10px;
+}
+
+.live{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 20px;
+    border-radius:50px;
+    background:rgba(114,255,0,.12);
+    border:1px solid rgba(114,255,0,.3);
+    margin-bottom:20px;
+    backdrop-filter:blur(8px);
+}
+
+.live-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#72ff00;
+    box-shadow:0 0 15px #72ff00;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        opacity:1;
+    }
+    50%{
+        opacity:.4;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+.live span{
+    font-size:13px;
+    letter-spacing:3px;
+}
+
+.logo{
+    font-family:'Cairo',sans-serif;
+    font-size:90px;
+    font-weight:900;
+    line-height:1;
+    color:white;
+    text-shadow:
+    0 0 10px #72ff00,
+    0 0 40px rgba(114,255,0,.35);
+}
+
+.starting{
+    margin-top:10px;
+    font-size:22px;
+    letter-spacing:8px;
+    color:#72ff00;
+    font-weight:700;
+}
+
+/* SOCIAL BUTTONS */
+
+.social-btn{
+    width:100%;
+    min-height:95px;
+    padding:18px 22px;
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    text-decoration:none;
+    color:white;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+    position:relative;
+    overflow:hidden;
+    transition:.35s;
+    box-shadow:
+    0 0 25px rgba(0,0,0,.35),
+    inset 0 0 10px rgba(114,255,0,.02);
+}
+
+.social-btn::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:5px;
+    height:100%;
+    background:#72ff00;
+    box-shadow:0 0 15px #72ff00;
+}
+
+.social-btn:hover{
+    transform:translateX(10px);
+    border:1px solid rgba(114,255,0,.35);
+    box-shadow:
+    0 0 30px rgba(114,255,0,.15),
+    0 0 70px rgba(114,255,0,.08);
+}
+
+.icon{
+    width:70px;
+    height:70px;
+    border-radius:22px;
+    background:#72ff00;
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    flex-shrink:0;
+    box-shadow:0 0 20px rgba(114,255,0,.45);
+}
+
+.info{
+    flex:1;
+}
+
+.info h2{
+    font-size:22px;
+    color:#72ff00;
+    margin-bottom:5px;
+}
+
+.info p{
+    opacity:.85;
+    font-size:15px;
+}
+
+.arrow{
+    font-size:24px;
+    color:#72ff00;
+    transition:.3s;
+}
+
+.social-btn:hover .arrow{
+    transform:translateX(6px);
+}
+
+/* RIGHT */
+
+.right{
+    width:420px;
+}
+
+/* FOLLOW CARD */
+
+.card{
+    width:100%;
+    border-radius:35px;
+    padding:30px;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(114,255,0,.12);
+    backdrop-filter:blur(12px);
+    box-shadow:
+    0 0 35px rgba(0,0,0,.4),
+    0 0 60px rgba(114,255,0,.06);
+}
+
+.kick-head{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.kick-head p{
+    font-size:18px;
+    margin-bottom:10px;
+    color:#ddd;
+}
+
+.kick-head h1{
+    font-size:70px;
+    color:#72ff00;
+    font-weight:900;
+    line-height:1;
+    text-shadow:0 0 25px rgba(114,255,0,.4);
+}
+
+/* PROFILE */
+
+.profile{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.profile-left h2{
+    font-size:34px;
+    margin-bottom:6px;
+}
+
+.profile-left p{
+    color:#72ff00;
+    font-size:18px;
+}
+
+.profile img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #72ff00;
+    box-shadow:0 0 25px rgba(114,255,0,.4);
+}
+
+/* BUTTON */
+
+.follow-btn{
+    width:100%;
+    height:70px;
+    border:none;
+    border-radius:22px;
+    background:#72ff00;
+    color:#000;
+    font-size:23px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 25px rgba(114,255,0,.35);
+}
+
+.follow-btn:hover{
+    transform:scale(1.03);
+}
+
+/* QR */
+
+.qr-box{
+    margin-top:25px;
+    border-radius:25px;
+    overflow:hidden;
+    border:1px solid rgba(114,255,0,.15);
+}
+
+.qr-box img{
+    width:100%;
+    display:block;
+}
+
+.qr-text{
+    margin-top:15px;
+    text-align:center;
+    color:#72ff00;
+    font-size:17px;
+    font-weight:600;
+}
+
+/* FOOTER */
+
+.footer{
+    position:fixed;
+    left:50%;
+    bottom:22px;
+    transform:translateX(-50%);
+    width:92%;
+    min-height:95px;
+    border-radius:28px;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(114,255,0,.1);
+    backdrop-filter:blur(10px);
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    padding:15px;
+    box-shadow:
+    0 0 25px rgba(0,0,0,.4),
+    0 0 40px rgba(114,255,0,.05);
+}
+
+.footer-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.footer-item i{
+    font-size:30px;
+    color:#72ff00;
+}
+
+.footer-item h3{
+    color:#72ff00;
+    margin-bottom:3px;
+}
+
+.footer-item p{
+    font-size:13px;
+    opacity:.75;
+}
+
+/* MOBILE */
+
+@media(max-width:1200px){
+
+    body{
+        overflow:auto;
+    }
+
+    .container{
+        flex-direction:column;
+        padding:30px 20px 150px;
+        height:auto;
+        gap:35px;
+    }
+
+    .left,
+    .right{
+        width:100%;
+        max-width:500px;
+    }
+
+    .logo{
+        font-size:70px;
+    }
+
+    .footer{
+        height:auto;
+        flex-wrap:wrap;
+        gap:20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<!-- MAIN -->
+
+<div class="container">
+
+    <!-- LEFT -->
+
+    <div class="left">
+
+        <div class="logo-box">
+
+            <div class="live">
+                <div class="live-dot"></div>
+                <span>LIVE ON KICK</span>
+            </div>
+
+            <div class="logo">غفران</div>
+
+            <div class="starting">
+                STARTING SOON
+            </div>
+
+        </div>
+
+        <!-- INSTAGRAM -->
+
+        <a href="https://www.instagram.com/ghofranmuhammed/" target="_blank" class="social-btn">
+
+            <div class="icon">
+                <i class="fab fa-instagram"></i>
+            </div>
+
+            <div class="info">
+                <h2>INSTAGRAM</h2>
+                <p>@ghofranmuhammed</p>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </a>
+
+        <!-- YOUTUBE -->
+
+        <a href="https://www.youtube.com/@Ghofraneko_" target="_blank" class="social-btn">
+
+            <div class="icon">
+                <i class="fab fa-youtube"></i>
+            </div>
+
+            <div class="info">
+                <h2>YOUTUBE</h2>
+                <p>@Ghofraneko_</p>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </a>
+
+        <!-- TIKTOK -->
+
+        <a href="https://www.tiktok.com/@ghofraneko0" target="_blank" class="social-btn">
+
+            <div class="icon">
+                <i class="fab fa-tiktok"></i>
+            </div>
+
+            <div class="info">
+                <h2>TIKTOK</h2>
+                <p>@ghofraneko0</p>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </a>
+
+        <!-- KICK -->
+
+        <a href="https://kick.com/ghofraneko" target="_blank" class="social-btn">
+
+            <div class="icon">
+                <i class="fa-brands fa-kickstarter-k"></i>
+            </div>
+
+            <div class="info">
+                <h2>KICK STREAM</h2>
+                <p>kick.com/ghofraneko</p>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </a>
+
+        <!-- WHATSAPP -->
+
+        <a href="https://whatsapp.com/channel/0029VbCEBAIH5JLuSa57jo0b" target="_blank" class="social-btn">
+
+            <div class="icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+
+            <div class="info">
+                <h2>WHATSAPP</h2>
+                <p>Join Official Channel</p>
+            </div>
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+        </a>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right">
+
+        <div class="card">
+
+            <div class="kick-head">
+                <p>FOLLOW ON</p>
+                <h1>KICK</h1>
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-left">
+                    <h2>Ghofraneko</h2>
+                    <p>Streamer On Kick</p>
+                </div>
+
+                <!-- PROFILE IMAGE -->
+                <img src="profile.png">
+
+            </div>
+
+            <a href="https://kick.com/ghofraneko" target="_blank">
+
+                <button class="follow-btn">
+                    FOLLOW ON KICK
+                </button>
+
+            </a>
+
+            <!-- QR -->
+
+            <div class="qr-box">
+
+                <!-- QR IMAGE -->
+                <img src="qr.png">
+
+            </div>
+
+            <div class="qr-text">
+                ghofranwael@instapay
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    <div class="footer-item">
+
+        <i class="fa-solid fa-trophy"></i>
+
+        <div>
+            <h3>LIVE STREAM</h3>
+            <p>Best Moments Everyday</p>
+        </div>
+
+    </div>
+
+    <div class="footer-item">
+
+        <i class="fa-solid fa-users"></i>
+
+        <div>
+            <h3>COMMUNITY</h3>
+            <p>Respect • Loyalty • Fear</p>
+        </div>
+
+    </div>
+
+    <div class="footer-item">
+
+        <i class="fa-solid fa-crown"></i>
+
+        <div>
+            <h3>EXCLUSIVE CONTENT</h3>
+            <p>Only For Followers</p>
+        </div>
+
+    </div>
+
+    <div class="footer-item">
+
+        <i class="fa-solid fa-star"></i>
+
+        <div>
+            <h3>JOIN NOW</h3>
+            <p>Become Part Of Family</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
