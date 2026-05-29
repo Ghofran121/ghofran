@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghofraneko | Kick Streamer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--green:#9cff55;--soft:#d8ffbf;--glass:rgba(0,0,0,.30)}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,sans-serif;color:#fff;background:#020402;overflow-x:hidden}
+.bg{position:fixed;inset:0;background:url("background.png") center/cover no-repeat;z-index:-3;animation:bgMove 18s ease-in-out infinite alternate}
+@keyframes bgMove{to{transform:scale(1.05)}}
+.shade{position:fixed;inset:0;background:radial-gradient(circle at 70% 35%,rgba(156,255,85,.10),transparent 28%),linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.30),rgba(0,0,0,.12)),linear-gradient(to bottom,rgba(0,0,0,.10),rgba(0,0,0,.72));z-index:-2}
+.mouse-glow{position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(156,255,85,.12),transparent 65%);transform:translate(-50%,-50%);z-index:-1}
+nav{position:fixed;top:0;width:100%;z-index:20;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(0,0,0,.50),transparent)}
+.logo{font-weight:900;letter-spacing:2px;color:var(--soft)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:#ddd;text-decoration:none;font-size:13px;transition:.3s}
+.nav-links a:hover{color:var(--green)}
+section{padding:90px 6%}
+.hero{min-height:100vh;display:flex;align-items:center}
+.hero-box{max-width:780px}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:99px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);margin-bottom:22px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}
+h1{font-size:clamp(55px,9vw,135px);line-height:.9;font-weight:900;text-shadow:0 0 35px rgba(156,255,85,.22);animation:pop .9s ease forwards}
+@keyframes pop{from{opacity:0;transform:translateY(60px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+.subtitle{margin:20px 0;font-size:22px;letter-spacing:8px;color:var(--green);font-weight:900}
+.stream-tags{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stream-tags span{padding:10px 16px;border-radius:50px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(6px);font-size:13px}
+.desc{max-width:600px;line-height:1.8;color:#ddd;font-size:15px;text-shadow:0 2px 10px #000}
+.actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:15px 24px;border-radius:14px;text-decoration:none;color:#fff;font-weight:800;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);backdrop-filter:blur(8px);transition:.3s}
+.btn.main{background:linear-gradient(135deg,#9cff55,#3ca900);color:#071000}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(156,255,85,.2)}
+.section-title{font-size:42px;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--glass);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);border-radius:24px;padding:24px;min-height:170px;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(156,255,85,.45)}
+.card i{font-size:32px;color:var(--green);margin-bottom:16px}
+.card h3{font-size:22px;margin-bottom:8px}
+.card p{color:#d0d0d0;font-size:14px;line-height:1.7}
+.feature-box{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.big-panel{min-height:320px;border-radius:28px;padding:28px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:flex-end}
+.big-panel h3{font-size:36px;color:var(--green)}
+.big-panel p{color:#ddd;max-width:600px;line-height:1.8}
+.mini-list{display:flex;flex-direction:column;gap:16px}
+.mini{flex:1;padding:22px;border-radius:22px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+.mini h3{color:var(--green);margin-bottom:8px}
+.mini p{color:#d0d0d0;font-size:14px}
+.next-stream-panel{border-radius:28px;padding:32px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+.next-stream-panel h3{font-size:32px;color:var(--green);margin-bottom:8px}
+.next-stream-panel p{color:#d0d0d0;margin-bottom:26px;line-height:1.7}
+.countdown-box{display:flex;justify-content:flex-start;gap:20px;flex-wrap:wrap}
+.count-item{width:140px;padding:25px;text-align:center;border-radius:24px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+.count-item span{font-size:46px;font-weight:900;color:var(--green)}
+.count-item p{color:#ddd}
+.socials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.social{min-height:92px;display:flex;align-items:center;gap:16px;padding:18px;border-radius:22px;color:#fff;text-decoration:none;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px);transition:.3s}
+.social:hover{transform:scale(1.03);border-color:var(--green)}
+.social i{font-size:30px;color:var(--green);width:36px}
+.social p{color:#ccc;font-size:13px}
+footer{padding:35px 6%;text-align:center;color:#aaa;background:rgba(0,0,0,.45)}
+@media(max-width:900px){.nav-links{display:none}.grid,.socials,.feature-box{grid-template-columns:1fr}section{padding:70px 22px}.subtitle{font-size:15px;letter-spacing:5px}.count-item{width:45%}}
+@media(max-width:500px){.count-item{width:100%}}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+<div class="shade"></div>
+<div class="mouse-glow" id="glow"></div>
+
+<nav>
+  <div class="logo" id="navLogo">GHOFRANEKO</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#content">Content</a>
+    <a href="#next-stream">Next Stream</a>
+    <a href="#community">Community</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-box">
+    <div class="badge"><span class="dot"></span><span id="liveStatus">LIVE ON KICK</span></div>
+    <h1 id="siteTitle">GHOFRANEKO</h1>
+    <div class="subtitle" id="siteSubtitle">KICK STREAMER</div>
+    <div class="stream-tags" id="streamTags"></div>
+    <p class="desc" id="mainMessage"></p>
+    <div class="actions">
+      <a class="btn main" id="watchBtn" href="#" target="_blank"><i class="fa-solid fa-play"></i> Watch Live</a>
+      <a class="btn" href="#content">Explore Content</a>
+      <a class="btn" id="supportBtn" href="#" target="_blank">Support</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">About The Stream</h2>
+  <div class="grid">
+    <div class="card"><i class="fa-solid fa-gamepad"></i><h3 id="about1Title"></h3><p id="about1Text"></p></div>
+    <div class="card"><i class="fa-solid fa-fire"></i><h3 id="about2Title"></h3><p id="about2Text"></p></div>
+    <div class="card"><i class="fa-solid fa-users"></i><h3 id="about3Title"></h3><p id="about3Text"></p></div>
+  </div>
+</section>
+
+<section id="content">
+  <h2 class="section-title">Featured Content</h2>
+  <div class="feature-box">
+    <div class="big-panel"><h3 id="featureTitle"></h3><p id="featureText"></p></div>
+    <div class="mini-list">
+      <div class="mini"><h3 id="mini1Title"></h3><p id="mini1Text"></p></div>
+      <div class="mini"><h3 id="mini2Title"></h3><p id="mini2Text"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="next-stream">
+  <h2 class="section-title">Next Stream</h2>
+  <div class="next-stream-panel">
+    <h3 id="nextStreamTitle"></h3>
+    <p id="nextStreamNote"></p>
+    <div class="countdown-box">
+      <div class="count-item"><span id="days">00</span><p>Days</p></div>
+      <div class="count-item"><span id="hours">00</span><p>Hours</p></div>
+      <div class="count-item"><span id="minutes">00</span><p>Minutes</p></div>
+      <div class="count-item"><span id="seconds">00</span><p>Seconds</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <h2 class="section-title">Community & Platforms</h2>
+  <div class="socials">
+    <a class="social" id="kickLink" href="#" target="_blank"><i class="fa-solid fa-k"></i><div><h3>Kick</h3><p>Watch live streams</p></div></a>
+    <a class="social" id="youtubeLink" href="#" target="_blank"><i class="fab fa-youtube"></i><div><h3>YouTube</h3><p>Videos and highlights</p></div></a>
+    <a class="social" id="tiktokLink" href="#" target="_blank"><i class="fab fa-tiktok"></i><div><h3>TikTok</h3><p>Short clips</p></div></a>
+    <a class="social" id="instagramLink" href="#" target="_blank"><i class="fab fa-instagram"></i><div><h3>Instagram</h3><p>Stories and updates</p></div></a>
+    <a class="social" id="whatsappLink" href="#" target="_blank"><i class="fab fa-whatsapp"></i><div><h3>WhatsApp</h3><p>Official channel</p></div></a>
+    <a class="social" id="instapayLink" href="#" target="_blank"><i class="fa-solid fa-wallet"></i><div><h3>Support</h3><p>Support via InstaPay</p></div></a>
+  </div>
+</section>
+
+<footer id="footerText"></footer>
+
+<script type="module">
+const glow = document.getElementById("glow");
+document.addEventListener("mousemove", e => {
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD8DzB0g6ulj9Ke6dZqnGRP6_IJGZGdaWY",
+  authDomain: "ghofraneko-dashboard.firebaseapp.com",
+  databaseURL: "https://ghofraneko-dashboard-default-rtdb.firebaseio.com",
+  projectId: "ghofraneko-dashboard",
+  storageBucket: "ghofraneko-dashboard.firebasestorage.app",
+  messagingSenderId: "695966071027",
+  appId: "1:695966071027:web:4ef35ad4b742f38a3f9f86"
+};
+
+let siteData = {
+  navLogo:"GHOFRANEKO",
+  siteTitle:"GHOFRANEKO",
+  siteSubtitle:"KICK STREAMER",
+  liveStatus:"LIVE ON KICK",
+  mainMessage:"Welcome to the official streamer page of Ghofraneko. Watch live gameplay, funny moments, reactions, challenges, community streams, and exclusive updates in one clean place.",
+  tags:"🎮 Gaming,🎥 Live Streams,⚡ Highlights,💚 Kick Creator",
+  kickUrl:"https://kick.com/ghofraneko",
+  youtubeUrl:"https://www.youtube.com/@Ghofraneko_",
+  tiktokUrl:"https://www.tiktok.com/@ghofraneko0",
+  instagramUrl:"https://www.instagram.com/ghofranmuhammed/",
+  whatsappUrl:"https://whatsapp.com/channel/0029VbCEBAIH5JLuSa57jo0b",
+  instapayUrl:"https://ipn.eg/S/ghofranwael/instapay/5PisYl",
+  about1Title:"Gaming",
+  about1Text:"Live gameplay, competitive moments, challenges, and high-energy stream vibes.",
+  about2Title:"Entertainment",
+  about2Text:"Funny reactions, live moments, community talk, and stream highlights.",
+  about3Title:"Community",
+  about3Text:"A place for followers to watch, support, share clips, and stay connected.",
+  featureTitle:"Live Streams & Highlights",
+  featureText:"Follow Ghofraneko for live gaming streams, exclusive moments, reactions, community content, and the best clips from every stream.",
+  mini1Title:"Best Moments",
+  mini1Text:"Funny clips, epic wins, and unforgettable stream reactions.",
+  mini2Title:"Special Events",
+  mini2Text:"Community games, challenges, giveaways, and interactive streams.",
+  nextStreamDate:"2026-06-15T20:00",
+  nextStreamTitle:"NEXT LIVE STREAM",
+  nextStreamNote:"Countdown to the next live stream.",
+  footerText:"© 2026 Ghofraneko — Official Kick Streamer Website"
+};
+
+function setText(id, value){document.getElementById(id).innerText = value || "";}
+function setHref(id, value){document.getElementById(id).href = value || "#";}
+
+function applyData(data){
+  siteData = {...siteData, ...data};
+
+  setText("navLogo", siteData.navLogo);
+  setText("siteTitle", siteData.siteTitle);
+  setText("siteSubtitle", siteData.siteSubtitle);
+  setText("liveStatus", siteData.liveStatus);
+  setText("mainMessage", siteData.mainMessage);
+  setText("about1Title", siteData.about1Title);
+  setText("about1Text", siteData.about1Text);
+  setText("about2Title", siteData.about2Title);
+  setText("about2Text", siteData.about2Text);
+  setText("about3Title", siteData.about3Title);
+  setText("about3Text", siteData.about3Text);
+  setText("featureTitle", siteData.featureTitle);
+  setText("featureText", siteData.featureText);
+  setText("mini1Title", siteData.mini1Title);
+  setText("mini1Text", siteData.mini1Text);
+  setText("mini2Title", siteData.mini2Title);
+  setText("mini2Text", siteData.mini2Text);
+  setText("nextStreamTitle", siteData.nextStreamTitle);
+  setText("nextStreamNote", siteData.nextStreamNote);
+  setText("footerText", siteData.footerText);
+
+  setHref("watchBtn", siteData.kickUrl);
+  setHref("supportBtn", siteData.instapayUrl);
+  setHref("kickLink", siteData.kickUrl);
+  setHref("youtubeLink", siteData.youtubeUrl);
+  setHref("tiktokLink", siteData.tiktokUrl);
+  setHref("instagramLink", siteData.instagramUrl);
+  setHref("whatsappLink", siteData.whatsappUrl);
+  setHref("instapayLink", siteData.instapayUrl);
+
+  const tagsBox = document.getElementById("streamTags");
+  tagsBox.innerHTML = "";
+  String(siteData.tags || "").split(",").map(t => t.trim()).filter(Boolean).forEach(tag => {
+    const span = document.createElement("span");
+    span.innerText = tag;
+    tagsBox.appendChild(span);
+  });
+
+  countdown();
+}
+
+const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+const { getDatabase, ref, onValue } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js");
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+onValue(ref(db, "siteSettings"), snapshot => {
+  if(snapshot.exists()){
+    applyData(snapshot.val());
+  }else{
+    applyData(siteData);
+  }
+});
+
+function countdown(){
+  const target = new Date(siteData.nextStreamDate).getTime();
+  const now = new Date().getTime();
+  const distance = target - now;
+
+  if(distance <= 0){
+    ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).innerText = "00");
+    return;
+  }
+
+  document.getElementById("days").innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,"0");
+  document.getElementById("hours").innerText = String(Math.floor((distance/(1000*60*60))%24)).padStart(2,"0");
+  document.getElementById("minutes").innerText = String(Math.floor((distance/(1000*60))%60)).padStart(2,"0");
+  document.getElementById("seconds").innerText = String(Math.floor((distance/1000)%60)).padStart(2,"0");
+}
+
+setInterval(countdown,1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghofraneko Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--green:#9cff55;--soft:#d8ffbf}
+body{min-height:100vh;font-family:Poppins,sans-serif;color:#fff;background:radial-gradient(circle at top right,rgba(156,255,85,.18),transparent 30%),linear-gradient(135deg,#020402,#0b1308,#020402)}
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card,.panel{background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:30px;backdrop-filter:blur(12px);box-shadow:0 0 35px rgba(0,0,0,.35)}
+.login-card{width:100%;max-width:470px}
+h1{font-size:38px;color:var(--green);margin-bottom:8px}
+p{color:#cfcfcf;line-height:1.7}
+label{display:block;margin:16px 0 8px;color:var(--soft);font-weight:700}
+input,textarea,select{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;font-family:Poppins,sans-serif}
+textarea{min-height:105px;resize:vertical}
+button{margin-top:18px;padding:14px 22px;border:none;border-radius:14px;background:linear-gradient(135deg,#9cff55,#3ca900);color:#071000;font-weight:900;cursor:pointer}
+button.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+button.danger{background:linear-gradient(135deg,#ff6868,#a80000);color:#fff}
+.hidden{display:none!important}
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+.sidebar{padding:24px;border-right:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.35);position:sticky;top:0;height:100vh}
+.brand{font-size:24px;font-weight:900;color:var(--green);margin-bottom:24px}
+.menu{display:flex;flex-direction:column;gap:10px}
+.menu button{margin:0;width:100%;background:rgba(255,255,255,.06);color:#fff;text-align:left;border:1px solid rgba(255,255,255,.08)}
+.menu button.active{background:rgba(156,255,85,.18);border-color:rgba(156,255,85,.45)}
+.main{padding:28px}
+.panel{max-width:1100px;margin:0 auto 22px}
+.panel-title{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.status{margin-top:16px;color:var(--green);font-weight:800}
+.warn{margin-top:14px;color:#ffd36d;font-size:13px}
+.preview-link{color:var(--green);text-decoration:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.row,.three{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <h1>Admin Login</h1>
+    <p>Private dashboard for Ghofraneko website.</p>
+    <label>Password</label>
+    <input type="password" id="passwordInput" placeholder="Enter admin password">
+    <button onclick="login()">Login</button>
+    <div class="warn">Password: <b>Ghofran2026</b></div>
+  </div>
+</div>
+
+<div class="layout hidden" id="dashboardPage">
+  <aside class="sidebar">
+    <div class="brand">GHOFRANEKO ADMIN</div>
+    <div class="menu">
+      <button class="active" onclick="showTab('general', this)"><i class="fa-solid fa-sliders"></i> General</button>
+      <button onclick="showTab('stream', this)"><i class="fa-solid fa-video"></i> Stream</button>
+      <button onclick="showTab('links', this)"><i class="fa-solid fa-link"></i> Links</button>
+      <button onclick="showTab('content', this)"><i class="fa-solid fa-pen"></i> Content</button>
+      <button class="danger" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="panel">
+      <div class="panel-title">
+        <div><h1>Dashboard</h1><p>Control your streamer website from here.</p></div>
+        <a class="preview-link" href="index.html" target="_blank">Open Website</a>
+      </div>
+      <button onclick="saveSettings()">Save All Changes</button>
+      <button class="secondary" onclick="loadSettings()">Reload</button>
+      <div class="status" id="statusMsg"></div>
+    </div>
+
+    <section class="panel tab" id="tab-general">
+      <h1>General</h1>
+      <div class="row">
+        <div><label>Navbar Logo</label><input id="navLogo"></div>
+        <div><label>Main Title</label><input id="siteTitle"></div>
+      </div>
+      <div class="row">
+        <div><label>Subtitle</label><input id="siteSubtitle"></div>
+        <div><label>Live Status Badge</label><input id="liveStatus"></div>
+      </div>
+      <label>Hero Message</label><textarea id="mainMessage"></textarea>
+      <label>Tags - separate with commas</label><input id="tags">
+      <label>Footer Text</label><input id="footerText">
+    </section>
+
+    <section class="panel tab hidden" id="tab-stream">
+      <h1>Stream Control</h1>
+      <div class="row">
+        <div><label>Next Stream Date & Time</label><input type="datetime-local" id="nextStreamDate"></div>
+        <div><label>Next Stream Title</label><input id="nextStreamTitle"></div>
+      </div>
+      <label>Next Stream Note</label><input id="nextStreamNote">
+    </section>
+
+    <section class="panel tab hidden" id="tab-links">
+      <h1>Links</h1>
+      <div class="row">
+        <div><label>Kick URL</label><input id="kickUrl"></div>
+        <div><label>YouTube URL</label><input id="youtubeUrl"></div>
+      </div>
+      <div class="row">
+        <div><label>TikTok URL</label><input id="tiktokUrl"></div>
+        <div><label>Instagram URL</label><input id="instagramUrl"></div>
+      </div>
+      <div class="row">
+        <div><label>WhatsApp URL</label><input id="whatsappUrl"></div>
+        <div><label>InstaPay URL</label><input id="instapayUrl"></div>
+      </div>
+    </section>
+
+    <section class="panel tab hidden" id="tab-content">
+      <h1>About Cards</h1>
+      <div class="three">
+        <div><label>Card 1 Title</label><input id="about1Title"><label>Card 1 Text</label><textarea id="about1Text"></textarea></div>
+        <div><label>Card 2 Title</label><input id="about2Title"><label>Card 2 Text</label><textarea id="about2Text"></textarea></div>
+        <div><label>Card 3 Title</label><input id="about3Title"><label>Card 3 Text</label><textarea id="about3Text"></textarea></div>
+      </div>
+      <h1 style="margin-top:24px">Featured Content</h1>
+      <label>Main Feature Title</label><input id="featureTitle">
+      <label>Main Feature Text</label><textarea id="featureText"></textarea>
+      <div class="row">
+        <div><label>Mini 1 Title</label><input id="mini1Title"><label>Mini 1 Text</label><textarea id="mini1Text"></textarea></div>
+        <div><label>Mini 2 Title</label><input id="mini2Title"><label>Mini 2 Text</label><textarea id="mini2Text"></textarea></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+const ADMIN_PASSWORD = "Ghofran2026";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD8DzB0g6ulj9Ke6dZqnGRP6_IJGZGdaWY",
+  authDomain: "ghofraneko-dashboard.firebaseapp.com",
+  databaseURL: "https://ghofraneko-dashboard-default-rtdb.firebaseio.com",
+  projectId: "ghofraneko-dashboard",
+  storageBucket: "ghofraneko-dashboard.firebasestorage.app",
+  messagingSenderId: "695966071027",
+  appId: "1:695966071027:web:4ef35ad4b742f38a3f9f86"
+};
+
+let db = null;
+
+const defaultData = {
+  navLogo:"GHOFRANEKO",
+  siteTitle:"GHOFRANEKO",
+  siteSubtitle:"KICK STREAMER",
+  liveStatus:"LIVE ON KICK",
+  mainMessage:"Welcome to the official streamer page of Ghofraneko. Watch live gameplay, funny moments, reactions, challenges, community streams, and exclusive updates in one clean place.",
+  tags:"🎮 Gaming,🎥 Live Streams,⚡ Highlights,💚 Kick Creator",
+  kickUrl:"https://kick.com/ghofraneko",
+  youtubeUrl:"https://www.youtube.com/@Ghofraneko_",
+  tiktokUrl:"https://www.tiktok.com/@ghofraneko0",
+  instagramUrl:"https://www.instagram.com/ghofranmuhammed/",
+  whatsappUrl:"https://whatsapp.com/channel/0029VbCEBAIH5JLuSa57jo0b",
+  instapayUrl:"https://ipn.eg/S/ghofranwael/instapay/5PisYl",
+  about1Title:"Gaming",
+  about1Text:"Live gameplay, competitive moments, challenges, and high-energy stream vibes.",
+  about2Title:"Entertainment",
+  about2Text:"Funny reactions, live moments, community talk, and stream highlights.",
+  about3Title:"Community",
+  about3Text:"A place for followers to watch, support, share clips, and stay connected.",
+  featureTitle:"Live Streams & Highlights",
+  featureText:"Follow Ghofraneko for live gaming streams, exclusive moments, reactions, community content, and the best clips from every stream.",
+  mini1Title:"Best Moments",
+  mini1Text:"Funny clips, epic wins, and unforgettable stream reactions.",
+  mini2Title:"Special Events",
+  mini2Text:"Community games, challenges, giveaways, and interactive streams.",
+  nextStreamDate:"2026-06-15T20:00",
+  nextStreamTitle:"NEXT LIVE STREAM",
+  nextStreamNote:"Countdown to the next live stream.",
+  footerText:"© 2026 Ghofraneko — Official Kick Streamer Website"
+};
+
+const fields = Object.keys(defaultData);
+
+const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+const { getDatabase, ref, get, set } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js");
+
+const app = initializeApp(firebaseConfig);
+db = getDatabase(app);
+
+window.login = async function(){
+  if(document.getElementById("passwordInput").value !== ADMIN_PASSWORD){
+    alert("Wrong password");
+    return;
+  }
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("dashboardPage").classList.remove("hidden");
+  await loadSettings();
+}
+
+window.logout = function(){
+  document.getElementById("dashboardPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("passwordInput").value = "";
+}
+
+window.showTab = function(tab, btn){
+  document.querySelectorAll(".tab").forEach(el => el.classList.add("hidden"));
+  document.getElementById("tab-" + tab).classList.remove("hidden");
+  document.querySelectorAll(".menu button").forEach(el => el.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function putDataInFields(data){
+  fields.forEach(key => {
+    const el = document.getElementById(key);
+    if(el) el.value = data[key] || "";
+  });
+}
+
+function getDataFromFields(){
+  const data = {};
+  fields.forEach(key => {
+    const el = document.getElementById(key);
+    if(el) data[key] = el.value;
+  });
+  return data;
+}
+
+window.loadSettings = async function(){
+  let data = defaultData;
+  const snapshot = await get(ref(db, "siteSettings"));
+  if(snapshot.exists()) data = {...defaultData, ...snapshot.val()};
+  putDataInFields(data);
+  document.getElementById("statusMsg").innerText = "Loaded.";
+}
+
+window.saveSettings = async function(){
+  const data = getDataFromFields();
+  await set(ref(db, "siteSettings"), data);
+  document.getElementById("statusMsg").innerText = "Saved successfully. Website updated.";
+}
+</script>
+</body>
+</html>
