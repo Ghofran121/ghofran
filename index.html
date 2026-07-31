@@ -260,20 +260,14 @@ onValue(ref(db, "siteSettings"), snapshot => {
 function countdown(){
   const target = new Date(siteData.nextStreamDate).getTime();
   const now = new Date().getTime();
-  const distance = target - now;
-
-  if(distance <= 0){
-    ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).innerText = "00");
+  const distance = target - now;X
+s
+  if(distance <xc    ["days","hours","minutes","secondsas].forEach(id => document.getElementById(id).innerText = "00");asd,mfk mkm gklfvmkm
     return;
   }
-
-  document.getElementById("days").innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,"0");
-  document.getElementById("hours").innerText = String(Math.floor((distance/(1000*60*60))%24)).padStart(2,"0");
-  document.getElementById("minutes").innerText = String(Math.floor((distance/(1000*60))%60)).padStart(2,"0");
-  document.getElementById("seconds").innerText = String(Math.floor((distance/1000)%60)).padStart(2,"0");
-}
-
-setInterval(countdown,1000);
+d)d.innerText = String(Math.floor((distance/(1000adth.floor((distance/(1000*60))%60)).padStart(2,"0");
+  document.getElementById("seconds").innerText x= String(Math.floor((distance/1000)%60))fdStsdsart(2,"0");
+}xxatdown,1000);
 </script>
-</body>
+</body>ax
 </html>
